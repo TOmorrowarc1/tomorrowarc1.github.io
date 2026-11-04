@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Renshu Ge, computer science undergraduate at Shanghai Jiao Tong University."
+    />
+    <title>Renshu Ge</title>
+    <!-- Page appearance. The content begins after </head>. -->
+    <style>
+      /* Palette and typography */
+      :root {
+        color-scheme: light;
+        --paper: #f7f6f1;
+        --ink: #243333;
+        --muted: #64716e;
+        --accent: #3d6b60;
+        --line: #d5ddd5;
+        --photo-bg: #e7ece5;
+        --photo-border: #c8d3cb;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper: #182320;
+        --ink: #e8eee8;
+        --muted: #bdcbc2;
+        --accent: #9bceba;
+        --line: #43544c;
+        --photo-bg: #273930;
+        --photo-border: #53695d;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 40px 40px 90px;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; text-underline-offset: 4px; }
+      a:focus-visible, button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+      }
+      p { margin: 0 0 16px; }
+
+      /* Profile header */
+      .top {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 16px;
+      }
+      .lang, .theme-toggle {
+        font: inherit;
+        font-size: 13px;
+        background: none;
+        border: 0;
+        color: var(--accent);
+        padding: 3px 0;
+        cursor: pointer;
+      }
+      .profile {
+        display: grid;
+        grid-template-columns: 1fr 150px;
+        align-items: center;
+        gap: 40px;
+        padding: 65px 0 45px;
+      }
+      h1 {
+        font-family: Georgia, "Times New Roman", "Songti SC", serif;
+        font-size: clamp(42px, 7vw, 68px);
+        line-height: 1.05;
+        letter-spacing: -0.045em;
+        font-weight: 400;
+        margin: 0 0 20px;
+      }
+      .subtle { color: var(--muted); font-size: 14px; line-height: 1.7; }
+      .contact { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 22px; font-size: 13px; }
+      .contact a { display: inline-flex; align-items: center; gap: 7px; }
+      .contact svg { width: 15px; height: 15px; flex: none; }
+      .photo {
+        width: 150px;
+        height: 182px;
+        border: 1px solid var(--photo-border);
+        background: var(--photo-bg);
+        color: var(--muted);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      /* Introduction and research questions */
+      .intro { max-width: 700px; padding-bottom: 38px; }
+      .intro > p:first-child { font-size: 16px; }
+      .intro > p:nth-child(2) { margin-top: 25px; margin-bottom: 9px; }
+      .intro ol { padding-left: 22px; margin: 0; }
+      .intro li { padding-left: 8px; margin: 9px 0; }
+      .intro li::marker { color: var(--accent); font-family: Georgia, serif; }
+
+      /* Sections use a narrow heading column and a wider content column. */
+      section {
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr);
+        column-gap: 35px;
+        border-top: 1px solid var(--line);
+        padding: 32px 0 36px;
+      }
+      section > h2 { grid-column: 1; grid-row: 1 / span 20; }
+      section > :not(h2) { grid-column: 2; }
+      h2 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", "Songti SC", serif;
+        font-size: 22px;
+        line-height: 1.35;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+      }
+      .item { padding: 0 0 18px; margin: 0 0 18px; border-bottom: 1px solid var(--line); }
+      .item:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
+      .item a { color: var(--ink); }
+      .item a:hover { color: var(--accent); }
+      .item strong { font-size: 15px; font-weight: 600; }
+      .item p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+      .empty { margin: 0; color: var(--muted); font-size: 14px; }
+      footer {
+        border-top: 1px solid var(--ink);
+        padding-top: 20px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      /* Stack the columns on smaller screens. */
+      @media (max-width: 600px) {
+        main { padding: 25px 23px 60px; }
+        .profile { grid-template-columns: 1fr 90px; gap: 18px; padding: 42px 0 32px; }
+        .photo { width: 90px; height: 112px; }
+        h1 { font-size: 42px; }
+        .contact { gap: 17px; }
+        section { display: block; padding: 26px 0 30px; }
+        section h2 { margin-bottom: 17px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="top">
+        <button
+          class="lang"
+          type="button"
+          id="language"
+          aria-label="Switch to Chinese"
+        >
+          汉
+        </button>
+        <button
+          class="theme-toggle"
+          type="button"
+          id="theme-toggle"
+          aria-label="Switch to dark theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">☾</span>
+        </button>
+      </header>
+      <!-- Profile and contact links -->
+      <div class="profile">
+        <div>
+          <h1 data-en="Renshu Ge" data-zh="葛仁澍">Renshu Ge</h1>
+          <p
+            class="subtle"
+            data-en="Computer Science Undergraduate<br>Shanghai Jiao Tong University"
+            data-zh="计算机科学本科生<br>上海交通大学"
+          >
+            Computer Science Undergraduate<br />Shanghai Jiao Tong University
+          </p>
+          <div class="contact">
+            <a href="mailto:tomorrow_arc1@sjtu.edu.cn"
+              ><svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m4 7 8 6 8-6" /></svg
+              >Email</a
+            ><a href="https://github.com/TOmorrowarc1"
+              ><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 .8a11.2 11.2 0 0 0-3.54 21.82c.56.1.77-.24.77-.54v-2.1c-3.12.68-3.78-1.33-3.78-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.15 1.72 1.15 1 1.71 2.62 1.22 3.26.93.1-.73.39-1.22.71-1.5-2.49-.28-5.1-1.24-5.1-5.54 0-1.23.44-2.23 1.15-3.02-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.61 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.15 1.79 1.15 3.02 0 4.31-2.62 5.25-5.12 5.53.4.35.76 1.02.76 2.07v3.03c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"
+                /></svg
+              >GitHub</a
+            >
+          </div>
+        </div>
+        <!-- Replace this placeholder with an <img> when you have a photo. -->
+        <div
+          class="photo"
+          role="img"
+          data-en="Photo<br>placeholder"
+          data-zh="照片<br>待添加"
+          aria-label="Photo placeholder"
+        >
+          Photo<br />placeholder
+        </div>
+      </div>
+      <!-- For bilingual text, update data-en, data-zh, and the visible English text. -->
+      <div class="intro">
+        <p
+          data-en="I am a third-year computer science undergraduate at Shanghai Jiao Tong University, working with Professor Chen Chen."
+          data-zh="我是上海交通大学计算机科学专业三年级本科生，目前与陈晨教授一起工作。"
+        >
+          I am a third-year computer science undergraduate at Shanghai Jiao Tong
+          University, working with Professor Chen Chen.
+        </p>
+        <p
+          data-en="Several questions I am curious about:"
+          data-zh="一些我感兴趣的问题："
+        >
+          Several questions I am curious about:
+        </p>
+        <ol>
+          <li
+            data-en="How can we tell whether software behaves as its developers intended, including in unexpected situations?"
+            data-zh="我们如何判断软件是否按照开发者的意图运行，包括在意料之外的情况下？"
+          >
+            How can we tell whether software behaves as its developers intended,
+            including in unexpected situations?
+          </li>
+          <li
+            data-en="How can we check whether software conforms to its written specifications, such as API documentation?"
+            data-zh="我们如何检验软件是否符合其书面规范，例如 API 文档？"
+          >
+            How can we check whether software conforms to its written
+            specifications, such as API documentation?
+          </li>
+          <li
+            data-en="How can we identify and address gaps between developers’ intent and the specifications they write?"
+            data-zh="我们如何发现并弥合开发者意图与其书面规范之间的差距？"
+          >
+            How can we identify and address gaps between developers’ intent and
+            the specifications they write?
+          </li>
+        </ol>
+      </div>
+      <!-- Selected projects: copy an article to add another project. -->
+      <section>
+        <h2 data-en="Selected projects" data-zh="项目">
+          Selected projects
+        </h2>
+        <article class="item">
+          <a href="https://github.com/TOmorrowarc1/MyCPU2"
+            ><strong>MyCPU2</strong></a
+          >
+          <p
+            data-en="A RISC-V CPU built with Chisel, with Tomasulo-style execution and privileged architecture support."
+            data-zh="使用 Chisel 构建的 RISC-V CPU，支持 Tomasulo 执行架构和特权架构。"
+          >
+            A RISC-V CPU built with Chisel, with Tomasulo-style execution and
+            privileged architecture support.
+          </p>
+        </article>
+        <article class="item">
+          <a href="https://github.com/TOmorrowarc1/R-Compiler"
+            ><strong>R-Compiler</strong></a
+          >
+          <p
+            data-en="A C++ compiler frontend for a subset of Rust."
+            data-zh="使用 C++ 实现的 Rust 子集编译器前端。"
+          >
+            A C++ compiler frontend for a subset of Rust.
+          </p>
+        </article>
+        <article class="item">
+          <a href="https://github.com/TOmorrowarc1/DHT"
+            ><strong>Distributed Hash Tables</strong></a
+          >
+          <p
+            data-en="Chord and Kademlia implementations with a testing framework and fault-injection experiments."
+            data-zh="Chord 与 Kademlia 的实现，以及测试框架和故障注入实验。"
+          >
+            Chord and Kademlia implementations with a testing framework and
+            fault-injection experiments.
+          </p>
+        </article>
+      </section>
+      <!-- Add publications here when ready. -->
+      <section>
+        <h2 data-en="Selected publications" data-zh="论文">
+          Selected publications
+        </h2>
+        <p
+          class="empty"
+          data-en="Publications will be added here."
+          data-zh="论文将在此处添加。"
+        >
+          Publications will be added here.
+        </p>
+      </section>
+      <!-- Add notes here when ready. -->
+      <section>
+        <h2 data-en="Notes" data-zh="笔记">Notes</h2>
+        <p
+          class="empty"
+          data-en="Notes will be added here."
+          data-zh="笔记将在此处添加。"
+        >
+          Notes will be added here.
+        </p>
+      </section>
+      <footer>Renshu Ge · Shanghai Jiao Tong University</footer>
+    </main>
+    <!-- Switch between the English and Chinese text stored above. -->
+    <script>
+      let language = "en";
+      const themeButton = document.getElementById("theme-toggle");
+
+      // Keep the chosen theme between visits when browser storage is available.
+      let theme = "light";
+      try {
+        if (localStorage.getItem("theme") === "dark") theme = "dark";
+      } catch (error) {
+        // The toggle still works for this visit if storage is unavailable.
+      }
+
+      function updateThemeButton() {
+        const isDark = theme === "dark";
+        document.documentElement.dataset.theme = theme;
+        themeButton.setAttribute("aria-pressed", String(isDark));
+        themeButton.setAttribute(
+          "aria-label",
+          language === "zh"
+            ? (isDark ? "切换到浅色主题" : "切换到深色主题")
+            : (isDark ? "Switch to light theme" : "Switch to dark theme"),
+        );
+        themeButton.firstElementChild.textContent = isDark ? "☀" : "☾";
+      }
+
+      themeButton.addEventListener("click", () => {
+        theme = theme === "light" ? "dark" : "light";
+        try {
+          localStorage.setItem("theme", theme);
+        } catch (error) {
+          // Continue without saving when storage is unavailable.
+        }
+        updateThemeButton();
+      });
+      updateThemeButton();
+
+      const button = document.getElementById("language");
+      button.addEventListener("click", () => {
+        language = language === "en" ? "zh" : "en";
+        document.documentElement.lang = language === "en" ? "en" : "zh-CN";
+        document.querySelectorAll("[data-en][data-zh]").forEach((element) => {
+          element.innerHTML = element.dataset[language];
+        });
+        button.textContent = language === "en" ? "汉" : "EN";
+        updateThemeButton();
+        button.setAttribute(
+          "aria-label",
+          language === "en" ? "Switch to Chinese" : "Switch to English",
+        );
+        document
+          .querySelector(".photo")
+          .setAttribute(
+            "aria-label",
+            language === "en" ? "Photo placeholder" : "照片待添加",
+          );
+      });
+    </script>
+  </body>
+</html>
