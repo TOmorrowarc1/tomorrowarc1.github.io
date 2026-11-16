@@ -96,11 +96,9 @@
         border: 1px solid var(--photo-border);
         background: var(--photo-bg);
         color: var(--muted);
-        display: grid;
-        place-items: center;
-        text-align: center;
-        font-size: 12px;
-        line-height: 1.5;
+        display: block;
+        object-fit: cover;
+        object-position: center;
       }
 
       /* Introduction and research questions */
@@ -208,16 +206,7 @@
             >
           </div>
         </div>
-        <!-- Replace this placeholder with an <img> when you have a photo. -->
-        <div
-          class="photo"
-          role="img"
-          data-en="Photo<br>placeholder"
-          data-zh="照片<br>待添加"
-          aria-label="Photo placeholder"
-        >
-          Photo<br />placeholder
-        </div>
+        <img class="photo" src="photo.jpg" alt="Portrait of Renshu Ge" width="150" height="182" />
       </div>
       <!-- For bilingual text, update data-en, data-zh, and the visible English text. -->
       <div class="intro">
@@ -370,8 +359,8 @@
         document
           .querySelector(".photo")
           .setAttribute(
-            "aria-label",
-            language === "en" ? "Photo placeholder" : "照片待添加",
+            "alt",
+            language === "en" ? "Portrait of Renshu Ge" : "葛仁澍的照片",
           );
       });
     </script>
