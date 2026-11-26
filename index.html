@@ -47,7 +47,7 @@
       }
       a { color: var(--accent); text-decoration: none; }
       a:hover { text-decoration: underline; text-underline-offset: 4px; }
-      a:focus-visible, button:focus-visible {
+      a:focus-visible, button:focus-visible, summary:focus-visible {
         outline: 2px solid var(--accent);
         outline-offset: 4px;
       }
@@ -133,7 +133,50 @@
       .item a:hover { color: var(--accent); }
       .item strong { font-size: 15px; font-weight: 600; }
       .item p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
-      .empty { margin: 0; color: var(--muted); font-size: 14px; }
+      .note + .note { border-top: 1px solid var(--line); }
+      .note summary {
+        padding: 8px 0;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .note summary::marker, .note summary:hover { color: var(--accent); }
+      .note-content { padding: 8px 0 22px; }
+      .note-article { overflow-wrap: anywhere; }
+      .note-article h3, .note-article h4, .note-article h5, .note-article h6 {
+        line-height: 1.4;
+        margin: 1.5em 0 .5em;
+      }
+      .note-article > :first-child { margin-top: 0; }
+      .note-article pre, .note-article .katex-block {
+        max-width: 100%;
+        overflow-x: auto;
+      }
+      .note-article pre {
+        padding: 12px 16px;
+        background: var(--photo-bg);
+        border: 1px solid var(--line);
+      }
+      .note-article table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        border-collapse: collapse;
+        margin: 16px 0;
+      }
+      .note-article th, .note-article td {
+        border: 1px solid var(--line);
+        padding: 6px 10px;
+        vertical-align: top;
+      }
+      .note-article img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        padding: 8px;
+        background: #fff9ef;
+        margin: 0 auto;
+      }
+      .note-status, .note-source { font-size: 14px; }
       footer {
         border-top: 1px solid var(--ink);
         padding-top: 20px;
@@ -293,16 +336,34 @@
           <p data-en="arXiv preprint, 2026" data-zh="arXiv 预印本，2026">arXiv preprint, 2026</p>
         </article>
       </section>
-      <!-- Add notes here when ready. -->
-      <section>
+      <section id="notes">
         <h2 data-en="Notes" data-zh="笔记">Notes</h2>
-        <p
-          class="empty"
-          data-en="Notes will be added here."
-          data-zh="笔记将在此处添加。"
-        >
-          Notes will be added here.
-        </p>
+        <div>
+          <details class="note">
+            <summary data-en="Fault Injection" data-zh="故障注入">Fault Injection</summary>
+            <div class="note-content">
+              <a class="note-source" href="notes/fault-injection.md" data-en="Open Markdown source" data-zh="打开 Markdown 源文件">Open Markdown source</a>
+            </div>
+          </details>
+          <details class="note">
+            <summary data-en="Taint Analysis with SootUp and Jimple" data-zh="使用 SootUp 和 Jimple 进行污点分析">Taint Analysis with SootUp and Jimple</summary>
+            <div class="note-content">
+              <a class="note-source" href="notes/taint-analysis.md" data-en="Open Markdown source" data-zh="打开 Markdown 源文件">Open Markdown source</a>
+            </div>
+          </details>
+          <details class="note">
+            <summary data-en="Symbolic Execution" data-zh="符号执行">Symbolic Execution</summary>
+            <div class="note-content">
+              <a class="note-source" href="notes/symbolic-execution.md" data-en="Open Markdown source" data-zh="打开 Markdown 源文件">Open Markdown source</a>
+            </div>
+          </details>
+          <details class="note">
+            <summary data-en="Fuzzing" data-zh="模糊测试">Fuzzing</summary>
+            <div class="note-content">
+              <a class="note-source" href="notes/fuzzing.md" data-en="Open Markdown source" data-zh="打开 Markdown 源文件">Open Markdown source</a>
+            </div>
+          </details>
+        </div>
       </section>
       <footer>Renshu Ge · Shanghai Jiao Tong University</footer>
     </main>
@@ -364,5 +425,6 @@
           );
       });
     </script>
+    <script type="module" src="notes/reader.js"></script>
   </body>
 </html>
